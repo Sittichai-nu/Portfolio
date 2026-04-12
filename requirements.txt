@@ -13,5 +13,8 @@ python-decouple>=3.8,<4.0
 # AI chat feature
 anthropic>=0.39,<1.0
 
+# Image handling for uploads
+Pillow>=10.0,<13.0
+
 # Production web server
 gunicorn>=22.0,<23.0
