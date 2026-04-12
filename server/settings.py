@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     # Project apps
     'portfolio',
     'contact',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,4 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # AI chat feature
 AI_API_KEY = config('AI_API_KEY', default='')
+AI_MODEL = config('AI_MODEL', default='')
