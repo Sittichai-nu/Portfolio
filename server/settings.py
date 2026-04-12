@@ -29,6 +29,9 @@ INSTALLED_APPS = [
     # Third-party apps
     'rest_framework',
     'corsheaders',
+
+    # Project apps
+    'portfolio',
 ]
 
 MIDDLEWARE = [
@@ -90,6 +93,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
+
+# Media files (uploads: photos, resumes, project images)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # Default primary key field type
