@@ -1,18 +1,29 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('');
+  const [sending, setSending] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Connect to Django API later
-    setStatus('Thank you! Your message has been received.');
-    setForm({ name: '', email: '', message: '' });
+    setSending(true);
+    setStatus('');
+
+    try {
+      await axios.post('/api/contact/', form);
+      setStatus('success');
+      setForm({ name: '', email: '', message: '' });
+    } catch {
+      setStatus('error');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -76,13 +87,21 @@ function Contact() {
 
           <button
             type="submit"
-            className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium transition-colors"
+            disabled={sending}
+            className="w-full py-3 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-500/50 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors"
           >
-            Send Message
+            {sending ? 'Sending...' : 'Send Message'}
           </button>
 
-          {status && (
-            <p className="text-green-400 text-sm text-center">{status}</p>
+          {status === 'success' && (
+            <p className="text-green-400 text-sm text-center">
+              Thank you! Your message has been sent successfully.
+            </p>
+          )}
+          {status === 'error' && (
+            <p className="text-red-400 text-sm text-center">
+              Something went wrong. Please try again later.
+            </p>
           )}
         </form>
       </div>
