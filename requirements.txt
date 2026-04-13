@@ -16,5 +16,8 @@ anthropic>=0.39,<1.0
 # Image handling for uploads
 Pillow>=10.0,<13.0
 
+# Static file serving in production
+whitenoise>=6.5,<7.0
+
 # Production web server
 gunicorn>=22.0,<23.0

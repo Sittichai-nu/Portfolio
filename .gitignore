@@ -1,6 +1,9 @@
 # Uploaded media files
 media/
 
+# Collected static files
+staticfiles/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
